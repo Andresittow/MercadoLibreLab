@@ -1,0 +1,204 @@
+:root{
+  --bg1:#0b1220;
+  --bg2:#0f1b33;
+  --card: rgba(255,255,255,.08);
+  --stroke: rgba(255,255,255,.14);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.68);
+  --shadow: 0 18px 45px rgba(0,0,0,.38);
+  --radius: 18px;
+  --pad: 18px;
+}
+
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 10% 10%, rgba(106,17,203,.35), transparent 60%),
+    radial-gradient(900px 500px at 90% 30%, rgba(37,117,252,.35), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+.portafolio-dev{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 48px 16px;
+}
+
+.card-dev{
+  width: min(560px, 100%);
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform: translateY(0);
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.card-dev::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(700px 250px at 20% 0%, rgba(255,255,255,.14), transparent 60%);
+  pointer-events:none;
+}
+
+.card-dev:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,.22);
+}
+
+.avatar{
+  width: 86px;
+  height: 86px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 12px 28px rgba(0,0,0,.25);
+  display:block;
+  margin-bottom: 14px;
+}
+
+h2{
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.descripcion{
+  margin: 0 0 18px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.55;
+  font-size: 14.5px;
+}
+
+h3{
+  margin: 18px 0 10px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+}
+
+ul{
+  margin: 0 0 10px;
+  padding-left: 18px;
+  color: rgba(255,255,255,.75);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* Chips/badges para tecnologías (y las que generará JS) */
+.tecnologias{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tecnologias span,
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  font-size: 12.5px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.85);
+}
+
+/* Botón GitHub */
+.github{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
+  color: var(--text);
+  text-decoration:none;
+  font-weight: 700;
+  font-size: 13px;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.github:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.14);
+}
+
+/* Botón extra (JS) */
+.btn-secondary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.14);
+  color: rgba(255,255,255,.9);
+  text-decoration:none;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.btn-secondary:hover{
+  transform: translateY(-2px);
+  background: rgba(0,0,0,.20);
+}
+
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.92);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events:none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.toast.show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* Animación de entrada (JS agrega la clase) */
+.reveal{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 520px){
+  .card-dev{ padding: 18px; }
+  .avatar{ width: 74px; height: 74px; border-radius: 16px; }
+}
